@@ -1,0 +1,340 @@
+.pricing-hero{padding:88px 0 55px;position:relative;border-bottom:1px solid var(--line)}.pricing-hero h1{font:800 clamp(44px,6vw,76px)/1.06 Manrope,sans-serif;letter-spacing:-.07em;margin:27px 0 18px}.pricing-hero h1 em,.pricing-custom h2 em{font-style:normal;color:var(--cyan)}.pricing-hero>p{font-size:13px;line-height:1.9;color:#9eacbc;max-width:540px;margin:0}.pricing-hero-foot{display:flex;justify-content:space-between;margin-top:55px;font-size:8px;letter-spacing:.2em;color:#78899d}.pricing-main{padding:58px 0 85px}.pricing-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:25px}.pricing-heading>p{font-size:11px;color:#9eacbc;max-width:380px;line-height:1.7;margin:0}.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.price-card{border:1px solid rgba(151,181,212,.16);background:linear-gradient(155deg,rgba(12,22,35,.95),rgba(6,11,19,.95));padding:25px 23px 22px;position:relative;min-width:0;transition:transform .25s,border-color .25s}.price-card:hover{transform:translateY(-4px);border-color:rgba(18,215,245,.4)}.price-card.featured{border-color:rgba(18,215,245,.48);background:linear-gradient(155deg,rgba(7,36,60,.98),rgba(6,11,19,.98));box-shadow:0 15px 45px rgba(0,90,170,.1)}.popular-tag{position:absolute;right:0;top:0;background:var(--cyan);color:#03101b;font-size:7px;font-weight:800;letter-spacing:.13em;padding:8px 11px}.price-top{display:flex;justify-content:space-between;align-items:center;height:26px}.price-index{font-size:7px;letter-spacing:.18em;color:#8b9db0}.price-icon{color:var(--cyan);font-size:23px}.price-label{font-size:8px;letter-spacing:.19em;color:var(--cyan);margin-top:27px}.price-card h2{font:700 25px/1.17 Manrope,sans-serif;letter-spacing:-.055em;margin:12px 0}.price-desc{font-size:10px;line-height:1.75;color:#93a3b5;min-height:52px;margin:0}.price-value{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:17px 0;margin:20px 0}.price-value small{display:block;font-size:8px;color:#8b9db0;letter-spacing:.08em;margin-bottom:6px}.price-value strong{font:700 18px Manrope,sans-serif;letter-spacing:-.03em}.price-card ul{list-style:none;padding:0;margin:0 0 24px}.price-card li{font-size:10px;color:#bdc9d7;padding:8px 0;border-bottom:1px solid rgba(151,181,212,.08)}.price-card li:before{content:"✓";color:var(--cyan);margin-right:10px}.price-link{display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(18,215,245,.35);padding:12px 13px;font-size:9px;letter-spacing:.04em;transition:background .2s}.price-link:hover{background:rgba(18,215,245,.09)}.price-link span{color:var(--cyan);font-size:15px}.pricing-disclaimer{display:flex;gap:12px;align-items:flex-start;margin-top:20px;padding:15px 17px;border:1px solid rgba(151,181,212,.12);background:rgba(9,17,28,.55);color:#8e9eb0}.pricing-disclaimer>span{color:var(--cyan);font-size:14px}.pricing-disclaimer p{font-size:9px;line-height:1.7;margin:0}.pricing-custom{border-top:1px solid var(--line);padding:70px 0;display:grid;grid-template-columns:1fr .7fr;gap:70px;align-items:center}.pricing-custom h2{font:700 clamp(36px,4.5vw,57px)/1.1 Manrope,sans-serif;letter-spacing:-.06em;margin:25px 0 0}.custom-copy p{font-size:11px;line-height:1.9;color:#9eacbc;margin:0 0 22px;max-width:430px}.pricing-faq{border-top:1px solid var(--line);padding:60px 0 80px}.faq-row{display:grid;grid-template-columns:.7fr 1fr;gap:30px;border-bottom:1px solid var(--line);padding:19px 0}.faq-row:first-of-type{margin-top:18px;border-top:1px solid var(--line)}.faq-row h3{font:600 13px Manrope,sans-serif;margin:0}.faq-row p{font-size:10px;line-height:1.8;color:#9eacbc;margin:0;max-width:550px}.footer{border-top:1px solid var(--line);padding:24px 0 28px;display:flex;align-items:center;gap:22px;color:#8292a4;font-size:8px;letter-spacing:.13em}.footer-brand{font:800 13px Manrope,sans-serif;color:#f3f7fb}.footer-brand span{color:var(--cyan)}.footer>a{margin-left:auto;color:#b6c5d5}.footer small{font-size:8px;color:#68798d}@media(max-width:900px){.pricing-grid{grid-template-columns:1fr 1fr}.price-card:last-child{grid-column:1/-1}}@media(max-width:760px){.pricing-hero{padding:60px 0 38px}.pricing-hero-foot{margin-top:35px}.pricing-heading{display:block}.pricing-heading>p{margin-top:15px}.pricing-grid{grid-template-columns:1fr}.price-card:last-child{grid-column:auto}.pricing-custom{grid-template-columns:1fr;gap:20px;padding:55px 0}.faq-row{grid-template-columns:1fr;gap:8px}.footer{flex-wrap:wrap;gap:12px}.footer>a{margin-left:0}.footer small{width:100%}}
+/* =========================================================
+   PREMIUM PRICING INTERACTIONS
+   ========================================================= */
+
+/* Hero entrance */
+.pricing-hero .eyebrow,
+.pricing-hero h1,
+.pricing-hero > p,
+.pricing-hero-foot {
+  animation: pricingReveal .8s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.pricing-hero h1 {
+  animation-delay: .08s;
+}
+
+.pricing-hero > p {
+  animation-delay: .16s;
+}
+
+.pricing-hero-foot {
+  animation-delay: .24s;
+}
+
+@keyframes pricingReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Pricing cards */
+.price-card {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.price-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 15% 0%,
+      rgba(18,215,245,.10),
+      transparent 38%
+    );
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.price-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .35s ease;
+}
+
+.price-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(18,215,245,.5);
+  box-shadow: 0 22px 55px rgba(0,0,0,.28);
+}
+
+.price-card:hover::before {
+  opacity: 1;
+}
+
+.price-card:hover::after {
+  transform: scaleX(1);
+}
+
+
+/* Featured card */
+.price-card.featured {
+  transform: translateY(-3px);
+}
+
+.price-card.featured:hover {
+  transform: translateY(-11px);
+  box-shadow:
+    0 25px 65px rgba(0,90,170,.18),
+    0 0 35px rgba(18,215,245,.06);
+}
+
+.popular-tag {
+  transition:
+    padding .25s ease,
+    letter-spacing .25s ease,
+    box-shadow .25s ease;
+}
+
+.price-card.featured:hover .popular-tag {
+  padding-left: 15px;
+  padding-right: 15px;
+  letter-spacing: .16em;
+  box-shadow: 0 0 24px rgba(18,215,245,.25);
+}
+
+
+/* Card top icons */
+.price-icon {
+  transition:
+    transform .35s ease,
+    text-shadow .35s ease;
+}
+
+.price-card:hover .price-icon {
+  transform: rotate(12deg) scale(1.15);
+  text-shadow: 0 0 18px rgba(18,215,245,.6);
+}
+
+
+/* Card headings */
+.price-card h2 {
+  transition: transform .3s ease;
+}
+
+.price-card:hover h2 {
+  transform: translateX(3px);
+}
+
+
+/* List items */
+.price-card li {
+  transition:
+    color .25s ease,
+    padding-left .25s ease,
+    border-color .25s ease;
+}
+
+.price-card li:hover {
+  color: #f3f7fb;
+  padding-left: 5px;
+  border-color: rgba(18,215,245,.2);
+}
+
+.price-card li:before {
+  display: inline-block;
+  transition: transform .25s ease;
+}
+
+.price-card li:hover:before {
+  transform: scale(1.2);
+}
+
+
+/* Price CTA */
+.price-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.price-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--cyan);
+  transform: translateX(-102%);
+  transition: transform .3s ease;
+  z-index: -1;
+}
+
+.price-link:hover {
+  color: #03101b;
+  border-color: var(--cyan);
+}
+
+.price-link:hover::before {
+  transform: translateX(0);
+}
+
+.price-link span {
+  transition:
+    transform .25s ease,
+    color .25s ease;
+}
+
+.price-link:hover span {
+  color: #03101b;
+  transform: translate(4px,-3px);
+}
+
+
+/* Disclaimer */
+.pricing-disclaimer {
+  transition:
+    border-color .3s ease,
+    background .3s ease,
+    transform .3s ease;
+}
+
+.pricing-disclaimer:hover {
+  border-color: rgba(18,215,245,.25);
+  background: rgba(9,21,34,.72);
+  transform: translateY(-2px);
+}
+
+
+/* Custom proposal section */
+.pricing-custom {
+  position: relative;
+}
+
+.pricing-custom::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 90px;
+  height: 1px;
+  background: var(--cyan);
+  box-shadow: 0 0 18px rgba(18,215,245,.55);
+}
+
+.pricing-custom h2 {
+  transition: transform .35s ease;
+}
+
+.pricing-custom:hover h2 {
+  transform: translateX(4px);
+}
+
+.custom-copy {
+  transition: transform .35s ease;
+}
+
+.pricing-custom:hover .custom-copy {
+  transform: translateX(-3px);
+}
+
+
+/* FAQ */
+.faq-row {
+  position: relative;
+  transition:
+    padding-left .3s ease,
+    border-color .3s ease;
+}
+
+.faq-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--cyan);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform .3s ease;
+}
+
+.faq-row:hover {
+  padding-left: 12px;
+  border-color: rgba(18,215,245,.28);
+}
+
+.faq-row:hover::before {
+  transform: scaleY(1);
+}
+
+.faq-row h3 {
+  transition: color .25s ease;
+}
+
+.faq-row:hover h3 {
+  color: var(--cyan);
+}
+
+
+/* Button polish */
+.pricing-custom .button {
+  transition:
+    transform .25s ease,
+    box-shadow .3s ease;
+}
+
+.pricing-custom .button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 35px rgba(0,0,0,.28);
+}
+
+
+/* Mobile refinement */
+@media (max-width: 760px) {
+  .price-card:hover,
+  .price-card.featured:hover {
+    transform: translateY(-4px);
+  }
+
+  .pricing-custom:hover h2,
+  .pricing-custom:hover .custom-copy {
+    transform: none;
+  }
+
+  .faq-row:hover {
+    padding-left: 8px;
+  }
+}
+
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .pricing-hero .eyebrow,
+  .pricing-hero h1,
+  .pricing-hero > p,
+  .pricing-hero-foot {
+    animation: none;
+  }
+
+  .price-card,
+  .price-card:hover,
+  .price-card.featured,
+  .price-card.featured:hover,
+  .pricing-custom:hover h2,
+  .pricing-custom:hover .custom-copy {
+    transform: none;
+  }
+
+  .price-card::before,
+  .price-card::after,
+  .faq-row::before {
+    transition: none;
+  }
+}

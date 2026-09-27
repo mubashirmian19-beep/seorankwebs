@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05080d">
+  <meta name="description" content="Explore selected digital projects and capabilities from SEORankWebs.">
+  <title>Portfolio — SEORankWebs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/portfolio.css') }}">
+</head>
+<body>
+  <div class="loader" id="loader" aria-label="Loading SEORankWebs">
+    <div class="loader-orbit orbit-one"></div><div class="loader-orbit orbit-two"></div>
+    <img src="{{ url_for('static', filename='images/seorankwebs-logo.png') }}" alt="SEORankWebs logo" class="loader-logo">
+    <div class="loader-word">SEORANK<span>WEBS</span></div>
+    <div class="loader-line"><i></i></div>
+    <span class="loader-caption">SEARCH AUTHORITY & DIGITAL GROWTH</span>
+  </div>
+  <div class="site-shell" id="site">
+    <div class="topline"><span class="pulse"></span> BUILT FOR AMBITION. DESIGNED FOR GROWTH.</div>
+    <header class="header">
+      <a class="brand" href="/" aria-label="SEORankWebs home">
+        <img src="{{ url_for('static', filename='images/seorankwebs-logo.png') }}" alt="">
+        <span>SEORANK<span>WEBS</span><small>SEARCH AUTHORITY & DIGITAL GROWTH</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false"><b></b><b></b></button>
+      <nav class="nav" id="nav">
+        <a href="/">Home</a><a href="/services">Services</a><a href="/about">About</a><a href="/case-studies">Case Studies</a><a href="/pricing">Pricing</a><a href="/contact">Contact</a><a class="active" href="/portfolio">Portfolio</a><a href="/#approach">Our approach</a><a href="/#about">About</a>
+        <a class="nav-cta" href="/#contact">Start a project <span>↗</span></a>
+      </nav>
+    </header>
+    <main>
+      <section class="portfolio-hero section-wrap">
+        <div class="portfolio-copy">
+          <div class="eyebrow"><span class="eyebrow-mark"></span> SELECTED WORK <span class="eyebrow-line"></span></div>
+          <h1>Ideas made<br><em>to move</em> business.</h1>
+          <p>Every project starts with a goal. Explore the kinds of digital experiences and growth work we bring together at SEORankWebs.</p>
+          <a class="button button-primary" href="/#contact">Discuss your project <span>↗</span></a>
+        </div>
+        <div class="portfolio-art" aria-hidden="true">
+          <div class="portfolio-art-grid"></div><div class="portfolio-orbit"></div>
+          <div class="portfolio-art-core"><span>SRW</span><i>✳</i></div>
+          <div class="portfolio-art-label">STRATEGY / DESIGN / GROWTH</div>
+        </div>
+        <div class="portfolio-foot"><span>PORTFOLIO / CAPABILITIES</span><span>SCROLL TO EXPLORE ↓</span></div>
+      </section>
+      <section class="work-intro section-wrap">
+        <div class="section-kicker">HOW WE CREATE IMPACT</div>
+        <div class="work-intro-row"><h2>Built around<br><span>the outcome.</span></h2><p>Our work spans search visibility, websites, and digital experiences. The examples below are project categories—not claimed client case studies.</p></div>
+      </section>
+      <section class="work-grid section-wrap" aria-label="Project categories">
+        <article class="work-card work-wide">
+          <div class="work-visual visual-seo"><span class="visual-tag">01 / SEARCH</span><div class="seo-window"><div class="window-bar"><i></i><i></i><i></i><span>organic visibility</span></div><div class="chart-title">Search performance <b>↗</b></div><div class="chart-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="chart-base"></div></div><span class="visual-caption">SEARCH / DISCOVERABILITY</span></div>
+          <div class="work-meta"><div><span class="work-type">SEO STRATEGY · LINK BUILDING</span><h3>Search visibility systems</h3><p>Research-led foundations designed to help the right audience discover a brand.</p></div><span class="work-arrow">↗</span></div>
+        </article>
+        <article class="work-card">
+          <div class="work-visual visual-web"><span class="visual-tag">02 / WEB</span><div class="browser-mock"><div class="browser-top"><i></i><i></i><i></i></div><div class="browser-content"><span>YOUR NEXT<br><b>BIG IDEA.</b></span><div class="mock-button"></div><div class="mock-image"></div></div></div><span class="visual-caption">WEB / EXPERIENCE</span></div>
+          <div class="work-meta"><div><span class="work-type">WEB DESIGN · DEVELOPMENT</span><h3>Digital experiences</h3><p>Clear, responsive websites shaped around people and business goals.</p></div><span class="work-arrow">↗</span></div>
+        </article>
+        <article class="work-card">
+          <div class="work-visual visual-content"><span class="visual-tag">03 / CONTENT</span><div class="content-stack"><div class="content-sheet sheet-back"></div><div class="content-sheet sheet-front"><span>STORY / 01</span><b>Make every<br>word count.</b><i></i><i></i><i></i></div></div><span class="visual-caption">CONTENT / CREATIVE</span></div>
+          <div class="work-meta"><div><span class="work-type">CONTENT · CREATIVE</span><h3>Content that connects</h3><p>Useful messaging and creative direction that give brands a distinct voice.</p></div><span class="work-arrow">↗</span></div>
+        </article>
+      </section>
+      <section class="portfolio-cta section-wrap">
+        <div class="portfolio-cta-inner"><div class="section-kicker">HAVE A PROJECT IN MIND?</div><h2>Let’s make your<br><em>next move.</em></h2><p>Tell us what you’re working toward. We’ll help map out the next steps.</p><a class="button button-primary" href="/#contact">Start a project <span>↗</span></a></div>
+      </section>
+    </main>
+    <footer class="footer section-wrap"><div class="footer-brand">SEORANK<span>WEBS</span></div><span>SEARCH AUTHORITY & DIGITAL GROWTH</span><a href="/">Back to home ↑</a><small>© 2026 SEORankWebs. All rights reserved.</small></footer>
+  </div>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

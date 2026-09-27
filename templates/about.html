@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05080d">
+  <meta name="description" content="Meet SEORankWebs, a digital growth agency bringing together SEO, web, content, and technology.">
+  <title>About Us — SEORankWebs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+</head>
+<body>
+  <div class="loader" id="loader" aria-label="Loading SEORankWebs">
+    <div class="loader-orbit orbit-one"></div><div class="loader-orbit orbit-two"></div>
+    <img src="{{ url_for('static', filename='images/seorankwebs-logo.png') }}" alt="SEORankWebs logo" class="loader-logo">
+    <div class="loader-word">SEORANK<span>WEBS</span></div>
+    <div class="loader-line"><i></i></div>
+    <span class="loader-caption">SEARCH AUTHORITY & DIGITAL GROWTH</span>
+  </div>
+  <div class="site-shell" id="site">
+    <div class="topline"><span class="pulse"></span> BUILT FOR AMBITION. DESIGNED FOR GROWTH.</div>
+    <header class="header">
+      <a class="brand" href="/" aria-label="SEORankWebs home">
+        <img src="{{ url_for('static', filename='images/seorankwebs-logo.png') }}" alt="">
+        <span>SEORANK<span>WEBS</span><small>SEARCH AUTHORITY & DIGITAL GROWTH</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false"><b></b><b></b></button>
+      <nav class="nav" id="nav">
+        <a href="/">Home</a><a href="/services">Services</a><a href="/portfolio">Portfolio</a><a class="active" href="/about">About</a><a href="/case-studies">Case Studies</a><a href="/pricing">Pricing</a><a href="/contact">Contact</a>
+        <a class="nav-cta" href="/#contact">Start a project <span>↗</span></a>
+      </nav>
+    </header>
+    <main>
+      <section class="about-hero section-wrap">
+        <div class="about-copy">
+          <div class="eyebrow"><span class="eyebrow-mark"></span> ABOUT SEORANKWEBS <span class="eyebrow-line"></span></div>
+          <h1>Built on strategy.<br><em>Driven by growth.</em></h1>
+          <p>We bring search, web, content, and creative thinking together to help businesses build a stronger digital presence.</p>
+          <a class="button button-primary" href="/#contact">Let’s work together <span>↗</span></a>
+        </div>
+        <div class="about-emblem" aria-label="SEORankWebs brand emblem">
+          <div class="about-emblem-grid"></div><div class="about-emblem-ring"></div>
+          <img src="{{ url_for('static', filename='images/seorankwebs-logo.png') }}" alt="SEORankWebs logo">
+          <span class="emblem-caption">SEARCH AUTHORITY / DIGITAL GROWTH</span>
+        </div>
+        <div class="about-foot"><span>WHO WE ARE</span><span>THINK. BUILD. GROW. ↓</span></div>
+      </section>
+      <section class="about-story section-wrap">
+        <div class="section-kicker">01 / OUR STORY</div>
+        <div class="story-grid"><h2>Digital growth<br><span>with intention.</span></h2><div><p>SEORankWebs is a digital agency focused on helping brands strengthen how they are found, experienced, and remembered online.</p><p>Our approach connects thoughtful strategy with practical execution—so every part of a digital project has a clear purpose.</p></div></div>
+      </section>
+      <section class="about-values section-wrap">
+        <div class="section-kicker">02 / WHAT GUIDES US</div>
+        <div class="values-heading"><h2>Principles behind<br><em>every project.</em></h2><p>Good digital work is more than a visual finish. It should be clear, useful, and built with the audience in mind.</p></div>
+        <div class="value-grid">
+          <article><span>01</span><h3>Clarity first</h3><p>Start with the real goal, understand the audience, and make the next step easy to see.</p></article>
+          <article><span>02</span><h3>Craft with purpose</h3><p>Bring design, content, and technology together to solve the right problem.</p></article>
+          <article><span>03</span><h3>Progress that lasts</h3><p>Focus on useful foundations and sustainable improvements—not empty promises.</p></article>
+        </div>
+      </section>
+      <section class="founder section-wrap">
+        <div class="founder-panel">
+          <div class="founder-mark"><img src="{{ url_for('static', filename='images/seorankwebs-logo.png') }}" alt=""></div>
+          <div class="founder-copy"><div class="section-kicker">03 / LEADERSHIP</div><h2>Mubashar Rehman</h2><div class="founder-role">CEO & CO-FOUNDER</div><p>Focused on SEO, off-page strategy, guest posting, and link building, Mubashar brings a search-led perspective to the agency’s digital growth work.</p><a class="under-link" href="/#contact">Connect with our team <span>↗</span></a></div>
+        </div>
+      </section>
+      <section class="about-cta section-wrap"><div class="about-cta-inner"><div class="section-kicker">READY TO MOVE FORWARD?</div><h2>Let’s build what’s<br><em>next.</em></h2><p>Share your goals and let’s explore how we can help.</p><a class="button button-primary" href="/#contact">Start a project <span>↗</span></a></div></section>
+    </main>
+    <footer class="footer section-wrap"><div class="footer-brand">SEORANK<span>WEBS</span></div><span>SEARCH AUTHORITY & DIGITAL GROWTH</span><a href="/">Back to home ↑</a><small>© 2026 SEORankWebs. All rights reserved.</small></footer>
+  </div>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

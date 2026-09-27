@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05080d">
+  <meta name="description" content="Explore SEORankWebs services: SEO, link building, web development, creative, social media and digital growth.">
+  <title>Services — SEORankWebs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/services.css') }}">
+</head>
+<body>
+  <div class="loader" id="loader" aria-label="Loading SEORankWebs">
+    <div class="loader-orbit orbit-one"></div><div class="loader-orbit orbit-two"></div>
+    <img src="{{ url_for('static', filename='images/seorankwebs-logo.png') }}" alt="SEORankWebs logo" class="loader-logo">
+    <div class="loader-word">SEORANK<span>WEBS</span></div>
+    <div class="loader-line"><i></i></div>
+    <span class="loader-caption">SEARCH AUTHORITY & DIGITAL GROWTH</span>
+  </div>
+  <div class="site-shell" id="site">
+    <div class="topline"><span class="pulse"></span> BUILT FOR AMBITION. DESIGNED FOR GROWTH.</div>
+    <header class="header">
+      <a class="brand" href="/#home" aria-label="SEORankWebs home">
+        <img src="{{ url_for('static', filename='images/seorankwebs-logo.png') }}" alt="">
+        <span>SEORANK<span>WEBS</span><small>SEARCH AUTHORITY & DIGITAL GROWTH</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false"><b></b><b></b></button>
+      <nav class="nav" id="nav">
+        <a href="/#home">Home</a><a class="active" href="/services">Services</a><a href="/portfolio">Portfolio</a><a href="/about">About</a><a href="/case-studies">Case Studies</a><a href="/pricing">Pricing</a><a href="/contact">Contact</a><a href="/#approach">Our approach</a><a href="/#about">About</a>
+        <a class="nav-cta" href="#service-contact">Start a project <span>↗</span></a>
+      </nav>
+    </header>
+    <main>
+      <section class="services-hero section-wrap">
+        <div class="services-hero-copy">
+          <div class="eyebrow"><span class="eyebrow-mark"></span> OUR CAPABILITIES <span class="eyebrow-line"></span></div>
+          <h1>Everything you need<br>to <em>move forward.</em></h1>
+          <p>Connected digital services, shaped around your goals. Find the right expertise for where your business is—and where you want to take it.</p>
+          <a class="button button-primary" href="#service-list">Explore services <span>↓</span></a>
+        </div>
+        <div class="services-hero-art" aria-hidden="true">
+          <div class="art-grid"></div><div class="art-halo"></div>
+          <div class="art-ring art-ring-1"></div><div class="art-ring art-ring-2"></div>
+          <div class="art-cross">+</div><div class="art-core"><img src="{{ url_for('static', filename='images/seorankwebs-logo.png') }}" alt=""></div>
+          <div class="art-label label-one"><i></i> STRATEGY</div><div class="art-label label-two"><i></i> EXECUTION</div><div class="art-label label-three"><i></i> GROWTH</div>
+        </div>
+        <div class="services-hero-foot"><span>CAPABILITIES / 06</span><span>SCROLL TO DISCOVER ↓</span></div>
+      </section>
+
+      <section class="services-intro section-wrap">
+        <div class="section-kicker">THE RIGHT EXPERTISE, CONNECTED</div>
+        <div class="services-intro-row"><h2>Not just services.<br><span>A joined-up approach.</span></h2><p>Strong digital outcomes rarely come from one isolated task. We bring strategy, craft, and technology together to help each part of your digital presence work harder.</p></div>
+      </section>
+
+      <section class="service-list section-wrap" id="service-list">
+        <article class="service-detail" id="seo">
+          <div class="detail-top"><span>01 / SEARCH</span><span class="detail-symbol">⌕</span></div>
+          <div class="detail-body"><div><h2>SEO &<br><em>Search</em></h2><p>Make it easier for the right people to find you. We focus on the foundations and opportunities that support long-term organic visibility.</p><a class="detail-link" href="#service-contact">Discuss SEO <span>↗</span></a></div><div class="detail-services"><span>Technical SEO</span><span>On-page SEO</span><span>Off-page SEO & link building</span><span>Guest posting outreach</span><span>Local & international SEO</span><span>SEO audits & strategy</span></div></div>
+          <div class="detail-index">01</div>
+        </article>
+        <article class="service-detail" id="web">
+          <div class="detail-top"><span>02 / DIGITAL EXPERIENCE</span><span class="detail-symbol">⌘</span></div>
+          <div class="detail-body"><div><h2>Web design &<br><em>development</em></h2><p>Thoughtful websites that balance visual impact, usability, and performance—from focused landing pages to richer digital platforms.</p><a class="detail-link" href="#service-contact">Discuss a website <span>↗</span></a></div><div class="detail-services"><span>Website design & UI/UX</span><span>Frontend development</span><span>Backend development</span><span>E-commerce websites</span><span>Landing pages</span><span>Maintenance & optimization</span></div></div>
+          <div class="detail-index">02</div>
+        </article>
+        <article class="service-detail" id="content">
+          <div class="detail-top"><span>03 / CONTENT</span><span class="detail-symbol">✳</span></div>
+          <div class="detail-body"><div><h2>Content &<br><em>creative</em></h2><p>Give your brand a clear voice and a consistent presence with useful content and considered creative direction.</p><a class="detail-link" href="#service-contact">Discuss content <span>↗</span></a></div><div class="detail-services"><span>SEO content strategy</span><span>Blog writing</span><span>Website copywriting</span><span>Product descriptions</span><span>Content optimization</span><span>Creative direction</span></div></div>
+          <div class="detail-index">03</div>
+        </article>
+        <article class="service-detail" id="social">
+          <div class="detail-top"><span>04 / COMMUNITY</span><span class="detail-symbol">◎</span></div>
+          <div class="detail-body"><div><h2>Social media<br><em>marketing</em></h2><p>Build a more intentional social presence with consistent communication, audience-aware content, and campaign support.</p><a class="detail-link" href="#service-contact">Discuss social media <span>↗</span></a></div><div class="detail-services"><span>Social media strategy</span><span>Content planning</span><span>Social media management</span><span>Campaign creative</span><span>Meta ads support</span><span>Performance reporting</span></div></div>
+          <div class="detail-index">04</div>
+        </article>
+        <article class="service-detail" id="growth">
+          <div class="detail-top"><span>05 / DIGITAL GROWTH</span><span class="detail-symbol">↗</span></div>
+          <div class="detail-body"><div><h2>Digital growth<br><em>strategy</em></h2><p>Bring your channels together around a clear plan, helping you prioritize the work that supports your business objectives.</p><a class="detail-link" href="#service-contact">Discuss growth <span>↗</span></a></div><div class="detail-services"><span>Digital marketing strategy</span><span>Lead generation</span><span>Email marketing</span><span>Campaign planning</span><span>Conversion optimization</span><span>Analytics & insights</span></div></div>
+          <div class="detail-index">05</div>
+        </article>
+        <article class="service-detail" id="ai">
+          <div class="detail-top"><span>06 / TECHNOLOGY</span><span class="detail-symbol">⌁</span></div>
+          <div class="detail-body"><div><h2>AI &<br><em>automation</em></h2><p>Explore practical ways to reduce repetitive work and connect digital tools with workflows that make sense for your team.</p><a class="detail-link" href="#service-contact">Discuss automation <span>↗</span></a></div><div class="detail-services"><span>AI integrations</span><span>Workflow automation</span><span>Chatbot integrations</span><span>API integrations</span><span>Custom digital tools</span><span>Data dashboards</span></div></div>
+          <div class="detail-index">06</div>
+        </article>
+      </section>
+
+      <section class="service-cta section-wrap" id="service-contact">
+        <div class="service-cta-inner"><div class="section-kicker">HAVE SOMETHING IN MIND?</div><h2>Let’s find the right<br><em>way forward.</em></h2><p>Tell us a little about your project and the team will follow up.</p><div class="cta-actions"><a class="button button-primary" href="mailto:mubasharrehmanuaf@gmail.com?subject=Project%20Inquiry%20-%20SEORankWebs">Start a project <span>↗</span></a><a class="service-email" href="https://wa.me/923157214591" target="_blank" rel="noopener">WhatsApp us ↗</a></div></div>
+      </section>
+    </main>
+    <footer class="footer section-wrap"><a class="footer-brand" href="/#home">SEORANK<span>WEBS</span></a><span>SEARCH AUTHORITY & DIGITAL GROWTH</span><div class="socials" aria-label="Social media"><a href="#" aria-label="Facebook (add account link)" title="Add Facebook link">f</a><a href="#" aria-label="Instagram (add account link)" title="Add Instagram link">◎</a><a href="#" aria-label="LinkedIn (add account link)" title="Add LinkedIn link">in</a><a href="#" aria-label="YouTube (add account link)" title="Add YouTube link">▶</a><a href="https://wa.me/923157214591" aria-label="WhatsApp" target="_blank" rel="noopener">◉</a></div><small>© 2026 SEORankWebs. All rights reserved.</small></footer>
+  </div>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

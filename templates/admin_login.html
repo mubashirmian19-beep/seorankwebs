@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | SEORankWebs</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at top left, #18233d, transparent 40%),
+                #070a10;
+            color: #ffffff;
+        }
+
+        .login-box {
+            width: min(420px, 92%);
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            background: rgba(17, 23, 35, 0.92);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 22px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            color: #080b12;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 0 0 8px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #8f99aa;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #d8dde7;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #30394b;
+            border-radius: 12px;
+            background: #0a0e16;
+            color: #ffffff;
+            outline: none;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #ffffff;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: 0;
+            border-radius: 12px;
+            background: #ffffff;
+            color: #080b12;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+        }
+
+        .message {
+            padding: 12px;
+            margin-bottom: 18px;
+            border-radius: 10px;
+            background: #3b1717;
+            color: #ffb5b5;
+            font-size: 14px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #687386;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+
+        <div class="logo">
+            SR
+        </div>
+
+        <h1>SEORankWebs</h1>
+
+        <div class="subtitle">
+            Secure Admin Dashboard
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% for category, message in messages %}
+
+                <div class="message">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endwith %}
+
+        <form method="POST">
+
+            <label for="username">
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter admin username"
+                required
+            >
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter admin password"
+                required
+            >
+
+            <button type="submit">
+                Login to Dashboard
+            </button>
+
+        </form>
+
+        <div class="footer">
+            © 2026 SEORankWebs · Admin Area
+        </div>
+
+    </div>
+
+</body>
+</html>

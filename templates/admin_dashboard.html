@@ -1,0 +1,2407 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Dashboard | SEORankWebs</title>
+    
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background: #020617;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           LAYOUT
+        ========================= */
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            width: 245px;
+            background: #0f172a;
+            border-right: 1px solid #1e293b;
+            padding: 25px 18px;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            z-index: 20;
+        }
+
+        .brand {
+            padding: 5px 10px 30px;
+        }
+
+        .brand h1 {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .brand span {
+            color: #14b8a6;
+        }
+
+        .brand p {
+            margin-top: 5px;
+            color: #64748b;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-title {
+            color: #64748b;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0 10px;
+            margin-bottom: 10px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            padding: 12px 12px;
+            margin-bottom: 5px;
+
+            border-radius: 9px;
+
+            color: #94a3b8;
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background: #172033;
+            color: #ffffff;
+        }
+
+        .nav-link.active {
+            background: #134e4a;
+            color: #ffffff;
+            border: 1px solid #0f766e;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .logout-link {
+            color: #f87171;
+        }
+
+        .logout-link:hover {
+            background: #3f1515;
+            color: #fca5a5;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+            margin-left: 245px;
+            width: calc(100% - 245px);
+            padding: 30px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 30px;
+        }
+
+        .page-title h2 {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .page-title p {
+            margin-top: 6px;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .admin-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 9px 13px;
+
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 9px;
+
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        .online-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        /* =========================
+           FLASH MESSAGES
+        ========================= */
+
+        .flash-container {
+            margin-bottom: 20px;
+        }
+
+        .flash {
+            padding: 13px 16px;
+            border-radius: 9px;
+            margin-bottom: 10px;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .flash.success {
+            background: #052e2b;
+            border: 1px solid #115e59;
+            color: #5eead4;
+        }
+
+        .flash.error {
+            background: #3f1515;
+            border: 1px solid #7f1d1d;
+            color: #fca5a5;
+        }
+
+        /* =========================
+           ANALYTICS
+        ========================= */
+
+        .section-title {
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 750;
+            margin-bottom: 15px;
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(5, minmax(0, 1fr));
+
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 13px;
+
+            padding: 19px;
+
+            position: relative;
+            overflow: hidden;
+
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            border-color: #334155;
+        }
+
+        .stat-card::after {
+            content: "";
+            position: absolute;
+
+            width: 80px;
+            height: 80px;
+
+            right: -25px;
+            top: -25px;
+
+            border-radius: 50%;
+
+            background: rgba(20, 184, 166, 0.06);
+        }
+
+        .stat-icon {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .stat-number {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 800;
+            margin-top: 5px;
+        }
+
+        .stat-description {
+            color: #475569;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        .stat-total {
+            border-top: 3px solid #14b8a6;
+        }
+
+        .stat-new {
+            border-top: 3px solid #38bdf8;
+        }
+
+        .stat-contacted {
+            border-top: 3px solid #a78bfa;
+        }
+
+        .stat-progress {
+            border-top: 3px solid #f59e0b;
+        }
+
+        .stat-completed {
+            border-top: 3px solid #22c55e;
+        }
+
+        /* =========================
+           ANALYTICS PANELS
+        ========================= */
+
+        .analytics-panels {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .panel {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 13px;
+            padding: 22px;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+
+            margin-bottom: 22px;
+        }
+
+        .panel-header h3 {
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 750;
+        }
+
+        .panel-header span {
+            color: #64748b;
+            font-size: 11px;
+        }
+
+        /* =========================
+           STATUS CHART
+        ========================= */
+
+        .chart-container {
+            min-height: 245px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .donut-wrap {
+            position: relative;
+
+            width: 190px;
+            height: 190px;
+        }
+
+        .donut {
+            width: 190px;
+            height: 190px;
+
+            border-radius: 50%;
+
+            background:
+                conic-gradient(
+                    #38bdf8 0deg,
+                    #38bdf8 var(--new-angle),
+                    #a78bfa var(--new-angle),
+                    #a78bfa var(--contacted-angle),
+                    #f59e0b var(--contacted-angle),
+                    #f59e0b var(--progress-angle),
+                    #22c55e var(--progress-angle),
+                    #22c55e var(--completed-angle),
+                    #334155 var(--completed-angle),
+                    #334155 360deg
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .donut::after {
+            content: "";
+
+            width: 112px;
+            height: 112px;
+
+            border-radius: 50%;
+
+            background: #0f172a;
+
+            position: absolute;
+        }
+
+        .donut-center {
+            position: absolute;
+            z-index: 2;
+
+            text-align: center;
+        }
+
+        .donut-center strong {
+            display: block;
+            color: #ffffff;
+            font-size: 27px;
+            font-weight: 800;
+        }
+
+        .donut-center span {
+            color: #64748b;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chart-layout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 35px;
+        }
+
+        .legend {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .legend-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .legend-label {
+            color: #94a3b8;
+            font-size: 12px;
+            min-width: 90px;
+        }
+
+        .legend-value {
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .dot-new {
+            background: #38bdf8;
+        }
+
+        .dot-contacted {
+            background: #a78bfa;
+        }
+
+        .dot-progress {
+            background: #f59e0b;
+        }
+
+        .dot-completed {
+            background: #22c55e;
+        }
+
+        .dot-empty {
+            background: #334155;
+        }
+
+        /* =========================
+           ACTIVITY BARS
+        ========================= */
+
+        .activity-chart {
+            min-height: 245px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 17px;
+        }
+
+        .activity-row {
+            display: grid;
+            grid-template-columns: 95px 1fr 35px;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .activity-label {
+            color: #94a3b8;
+            font-size: 11px;
+        }
+
+        .bar-bg {
+            height: 9px;
+
+            background: #1e293b;
+            border-radius: 99px;
+
+            overflow: hidden;
+        }
+
+        .bar {
+            height: 100%;
+            width: var(--bar-width);
+
+            background: #14b8a6;
+
+            border-radius: 99px;
+
+            transition: width 0.5s ease;
+        }
+
+        .activity-count {
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .no-activity {
+            text-align: center;
+            color: #475569;
+            font-size: 12px;
+            padding: 30px 0;
+        }
+
+        /* =========================
+           INQUIRIES TABLE
+        ========================= */
+
+        .table-panel {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 13px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 20px;
+
+            border-bottom: 1px solid #1e293b;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .table-header h2 {
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 750;
+        }
+
+        .export-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 7px;
+
+            padding: 10px 15px;
+
+            background: #0f766e;
+            color: #ffffff;
+
+            border: 1px solid #14b8a6;
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: 0.2s ease;
+        }
+
+        .export-btn:hover {
+            transform: translateY(-1px);
+            background: #115e59;
+            border-color: #2dd4bf;
+        }
+
+        /* =========================
+           FILTERS
+        ========================= */
+
+        .filters {
+            padding: 18px 20px;
+
+            display: grid;
+            grid-template-columns:
+                minmax(180px, 1fr)
+                180px
+                160px
+                auto;
+
+            gap: 10px;
+
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .filter-input,
+        .filter-select {
+            width: 100%;
+
+            background: #020617;
+            color: #e2e8f0;
+
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+
+            padding: 10px 12px;
+
+            font-size: 12px;
+
+            outline: none;
+        }
+
+        .filter-input:focus,
+        .filter-select:focus {
+            border-color: #14b8a6;
+        }
+
+        .clear-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 10px 14px;
+
+            background: #1e293b;
+            color: #cbd5e1;
+
+            border: 1px solid #334155;
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .clear-btn:hover {
+            background: #334155;
+            color: #ffffff;
+        }
+
+        .results-info {
+            padding: 13px 20px;
+
+            color: #64748b;
+
+            font-size: 11px;
+
+            border-bottom: 1px solid #1e293b;
+        }
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        th {
+            text-align: left;
+
+            padding: 13px 15px;
+
+            background: #0b1220;
+
+            color: #64748b;
+
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+
+            border-bottom: 1px solid #1e293b;
+        }
+
+        td {
+            padding: 15px;
+
+            color: #cbd5e1;
+
+            font-size: 12px;
+
+            border-bottom: 1px solid #172033;
+        }
+
+        tr:hover td {
+            background: #111c30;
+        }
+
+        .client-name {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .client-email {
+            color: #64748b;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .service-name {
+            color: #5eead4;
+            font-weight: 600;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+
+            padding: 5px 9px;
+
+            border-radius: 99px;
+
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .status-new {
+            background: #082f49;
+            color: #7dd3fc;
+            border: 1px solid #075985;
+        }
+
+        .status-contacted {
+            background: #2e1065;
+            color: #c4b5fd;
+            border: 1px solid #5b21b6;
+        }
+
+        .status-progress {
+            background: #451a03;
+            color: #fcd34d;
+            border: 1px solid #92400e;
+        }
+
+        .status-completed {
+            background: #052e16;
+            color: #86efac;
+            border: 1px solid #166534;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 7px;
+        }
+
+        .view-btn,
+        .delete-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 7px 10px;
+
+            border-radius: 7px;
+
+            text-decoration: none;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .view-btn {
+            background: #134e4a;
+            color: #5eead4;
+            border: 1px solid #0f766e;
+        }
+
+        .view-btn:hover {
+            background: #115e59;
+        }
+
+        .delete-btn {
+            background: #3f1515;
+            color: #fca5a5;
+            border: 1px solid #7f1d1d;
+        }
+
+        .delete-btn:hover {
+            background: #591b1b;
+        }
+
+        .empty-state {
+            padding: 60px 20px;
+
+            text-align: center;
+
+            color: #475569;
+        }
+
+        .empty-state-icon {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .empty-state h3 {
+            color: #94a3b8;
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .empty-state p {
+            font-size: 12px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1200px) {
+
+            .analytics-grid {
+                grid-template-columns:
+                    repeat(3, minmax(0, 1fr));
+            }
+
+            .filters {
+                grid-template-columns:
+                    1fr
+                    1fr;
+            }
+        }
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 210px;
+            }
+
+            .main {
+                margin-left: 210px;
+                width: calc(100% - 210px);
+                padding: 22px;
+            }
+
+            .analytics-panels {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .layout {
+                display: block;
+            }
+
+            .sidebar {
+                position: relative;
+
+                width: 100%;
+                height: auto;
+
+                border-right: none;
+                border-bottom: 1px solid #1e293b;
+
+                padding: 16px;
+            }
+
+            .brand {
+                padding-bottom: 18px;
+            }
+
+            .sidebar-bottom {
+                margin-top: 10px;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 18px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .analytics-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+            .filters {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-layout {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .table-header {
+                align-items: stretch;
+            }
+
+            .export-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 430px) {
+
+            .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title h2 {
+                font-size: 23px;
+            }
+
+            .panel {
+                padding: 16px;
+            }
+
+            .activity-row {
+                grid-template-columns:
+                    75px 1fr 25px;
+
+                gap: 8px;
+            }
+
+            .donut,
+            .donut-wrap {
+                width: 160px;
+                height: 160px;
+            }
+
+            .donut::after {
+                width: 95px;
+                height: 95px;
+            }
+        }
+        /* =========================================================
+   PREMIUM ADMIN DASHBOARD UI
+   ========================================================= */
+
+/* Smooth global rendering */
+body {
+    background:
+        radial-gradient(circle at 80% 0%, rgba(20,184,166,.055), transparent 28%),
+        #020617;
+}
+
+/* Sidebar premium finish */
+.sidebar {
+    background:
+        linear-gradient(180deg, rgba(15,23,42,.98), rgba(7,13,25,.98));
+    box-shadow: 12px 0 35px rgba(0,0,0,.16);
+}
+
+.brand h1 {
+    transition: transform .3s ease;
+}
+
+.brand:hover h1 {
+    transform: translateX(3px);
+}
+
+.brand span {
+    text-shadow: 0 0 18px rgba(20,184,166,.2);
+}
+
+/* Navigation */
+.nav-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #14b8a6;
+    transform: scaleY(0);
+    transition: transform .25s ease;
+}
+
+.nav-link:hover {
+    transform: translateX(3px);
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+    transform: scaleY(1);
+}
+
+.nav-link.active {
+    box-shadow: 0 8px 25px rgba(20,184,166,.08);
+}
+
+/* Topbar */
+.topbar {
+    animation: adminFadeUp .65s ease both;
+}
+
+.admin-badge {
+    transition:
+        border-color .25s ease,
+        background .25s ease,
+        transform .25s ease;
+}
+
+.admin-badge:hover {
+    border-color: #334155;
+    background: #111c30;
+    transform: translateY(-2px);
+}
+
+.online-dot {
+    box-shadow: 0 0 0 4px rgba(34,197,94,.08);
+    animation: onlinePulse 2s ease-in-out infinite;
+}
+
+@keyframes onlinePulse {
+    50% {
+        box-shadow: 0 0 0 7px rgba(34,197,94,0);
+    }
+}
+
+/* Section animation */
+.section-title {
+    animation: adminFadeUp .65s .08s ease both;
+}
+
+@keyframes adminFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Flash messages */
+.flash {
+    animation: flashIn .45s ease both;
+}
+
+@keyframes flashIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Analytics cards */
+.stat-card {
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+    border-color: #3b4a5f;
+    box-shadow: 0 18px 40px rgba(0,0,0,.22);
+}
+
+.stat-card::after {
+    transition:
+        transform .4s ease,
+        background .4s ease;
+}
+
+.stat-card:hover::after {
+    transform: scale(1.35);
+    background: rgba(20,184,166,.1);
+}
+
+.stat-icon {
+    display: inline-block;
+    transition:
+        transform .3s ease,
+        filter .3s ease;
+}
+
+.stat-card:hover .stat-icon {
+    transform: translateY(-3px) scale(1.08);
+    filter: drop-shadow(0 0 8px rgba(20,184,166,.25));
+}
+
+.stat-number {
+    transition: transform .3s ease;
+}
+
+.stat-card:hover .stat-number {
+    transform: translateX(3px);
+}
+
+/* Analytics panels */
+.panel {
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.panel:hover {
+    transform: translateY(-3px);
+    border-color: #334155;
+    box-shadow: 0 18px 45px rgba(0,0,0,.18);
+}
+
+.panel-header h3 {
+    transition: color .25s ease;
+}
+
+.panel:hover .panel-header h3 {
+    color: #5eead4;
+}
+
+/* Donut chart */
+.donut {
+    transition:
+        transform .5s ease,
+        filter .5s ease;
+}
+
+.chart-layout:hover .donut {
+    transform: scale(1.035) rotate(2deg);
+    filter: drop-shadow(0 0 18px rgba(20,184,166,.08));
+}
+
+.donut-center strong {
+    transition: transform .3s ease;
+}
+
+.chart-layout:hover .donut-center strong {
+    transform: scale(1.06);
+}
+
+/* Legend */
+.legend-item {
+    transition:
+        transform .25s ease,
+        color .25s ease;
+}
+
+.legend-item:hover {
+    transform: translateX(5px);
+}
+
+.legend-dot {
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.legend-item:hover .legend-dot {
+    transform: scale(1.3);
+    box-shadow: 0 0 10px currentColor;
+}
+
+/* Activity bars */
+.activity-row {
+    transition: transform .25s ease;
+}
+
+.activity-row:hover {
+    transform: translateX(4px);
+}
+
+.bar {
+    position: relative;
+    overflow: hidden;
+}
+
+.bar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,.12);
+    transform: translateX(-100%);
+    animation: barShine 2.8s ease-in-out infinite;
+}
+
+@keyframes barShine {
+    0%, 55% {
+        transform: translateX(-100%);
+    }
+
+    80%, 100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Table panel */
+.table-panel {
+    transition:
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.table-panel:hover {
+    border-color: #29384c;
+    box-shadow: 0 20px 55px rgba(0,0,0,.17);
+}
+
+/* Export button */
+.export-btn {
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform .25s ease,
+        box-shadow .3s ease,
+        background .25s ease;
+}
+
+.export-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,.1);
+    transform: translateX(-105%);
+    transition: transform .35s ease;
+}
+
+.export-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(20,184,166,.12);
+}
+
+.export-btn:hover::before {
+    transform: translateX(105%);
+}
+
+/* Filters */
+.filter-input,
+.filter-select {
+    transition:
+        border-color .25s ease,
+        background .25s ease,
+        box-shadow .25s ease,
+        transform .2s ease;
+}
+
+.filter-input:hover,
+.filter-select:hover {
+    border-color: #334155;
+    background: #07101d;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+    border-color: #14b8a6;
+    box-shadow: 0 0 0 3px rgba(20,184,166,.07);
+    background: #07101d;
+    transform: translateY(-1px);
+}
+
+.clear-btn {
+    transition:
+        transform .2s ease,
+        background .25s ease,
+        border-color .25s ease;
+}
+
+.clear-btn:hover {
+    transform: translateY(-2px);
+    border-color: #475569;
+}
+
+/* Table rows */
+.inquiry-row td {
+    transition:
+        background .2s ease,
+        color .2s ease;
+}
+
+.inquiry-row:hover td {
+    background: #111c30;
+}
+
+.client-name,
+.service-name {
+    transition: color .2s ease;
+}
+
+.inquiry-row:hover .client-name {
+    color: #5eead4;
+}
+
+.inquiry-row:hover .service-name {
+    color: #99f6e4;
+}
+
+/* Status badges */
+.status {
+    transition:
+        transform .2s ease,
+        box-shadow .25s ease;
+}
+
+.status:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0,0,0,.18);
+}
+
+/* Action buttons */
+.view-btn,
+.delete-btn {
+    transition:
+        transform .2s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+.view-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(20,184,166,.1);
+}
+
+.delete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(248,113,113,.08);
+}
+
+/* Empty state */
+.empty-state {
+    transition: transform .3s ease;
+}
+
+.empty-state:hover {
+    transform: translateY(-2px);
+}
+
+.empty-state-icon {
+    display: inline-block;
+    transition: transform .3s ease;
+}
+
+.empty-state:hover .empty-state-icon {
+    transform: translateY(-4px) scale(1.08);
+}
+
+/* Mobile polish */
+@media (max-width: 700px) {
+    .sidebar {
+        box-shadow: none;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-3px);
+    }
+
+    .panel:hover {
+        transform: none;
+    }
+
+    .table-panel:hover {
+        box-shadow: none;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .nav-link:hover,
+    .stat-card:hover,
+    .panel:hover,
+    .export-btn:hover,
+    .clear-btn:hover,
+    .view-btn:hover,
+    .delete-btn:hover {
+        transform: none;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+        <div>
+            <div class="brand">
+                <h1>SEO<span>Rank</span>Webs</h1>
+                <p>Admin Panel</p>
+            </div>
+
+            <div class="nav-title">
+                Management
+            </div>
+
+            <a
+                href="{{ url_for('admin_dashboard') }}"
+                class="nav-link active"
+            >
+                📊 Dashboard
+            </a>
+
+            <a
+                href="{{ url_for('home') }}"
+                target="_blank"
+                class="nav-link"
+            >
+                🌐 View Website
+            </a>
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <div class="nav-title">
+                Account
+            </div>
+
+            <a
+                href="{{ url_for('admin_logout') }}"
+                class="nav-link logout-link"
+            >
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+
+            <div class="page-title">
+
+                <h2>
+                    Dashboard
+                </h2>
+
+                <p>
+                    Monitor your SEORankWebs client inquiries and activity.
+                </p>
+
+            </div>
+
+            <div class="admin-badge">
+                <span class="online-dot"></span>
+                Admin Online
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             FLASH MESSAGES
+        ========================= -->
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                <div class="flash-container">
+
+                    {% for category, message in messages %}
+
+                        <div class="flash {{ category }}">
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- =========================
+             ANALYTICS
+        ========================= -->
+
+        <div class="section-title">
+            Inquiry Analytics
+        </div>
+
+
+        <!-- STAT CARDS -->
+
+        <div class="analytics-grid">
+
+            <div class="stat-card stat-total">
+
+                <div class="stat-icon">
+                    📊
+                </div>
+
+                <div class="stat-label">
+                    Total Inquiries
+                </div>
+
+                <div class="stat-number">
+                    {{ total_inquiries }}
+                </div>
+
+                <div class="stat-description">
+                    All client inquiries
+                </div>
+
+            </div>
+
+
+            <div class="stat-card stat-new">
+
+                <div class="stat-icon">
+                    🆕
+                </div>
+
+                <div class="stat-label">
+                    New
+                </div>
+
+                <div class="stat-number">
+                    {{ status_counts.get('New', 0) }}
+                </div>
+
+                <div class="stat-description">
+                    Awaiting response
+                </div>
+
+            </div>
+
+
+            <div class="stat-card stat-contacted">
+
+                <div class="stat-icon">
+                    📞
+                </div>
+
+                <div class="stat-label">
+                    Contacted
+                </div>
+
+                <div class="stat-number">
+                    {{ status_counts.get('Contacted', 0) }}
+                </div>
+
+                <div class="stat-description">
+                    Client contacted
+                </div>
+
+            </div>
+
+
+            <div class="stat-card stat-progress">
+
+                <div class="stat-icon">
+                    🔄
+                </div>
+
+                <div class="stat-label">
+                    In Progress
+                </div>
+
+                <div class="stat-number">
+                    {{ status_counts.get('In Progress', 0) }}
+                </div>
+
+                <div class="stat-description">
+                    Work in progress
+                </div>
+
+            </div>
+
+
+            <div class="stat-card stat-completed">
+
+                <div class="stat-icon">
+                    ✅
+                </div>
+
+                <div class="stat-label">
+                    Completed
+                </div>
+
+                <div class="stat-number">
+                    {{ status_counts.get('Completed', 0) }}
+                </div>
+
+                <div class="stat-description">
+                    Successfully completed
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             ANALYTICS PANELS
+        ========================= -->
+
+        <div class="analytics-panels">
+
+
+            <!-- STATUS CHART -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h3>
+                        Inquiry Status
+                    </h3>
+
+                    <span>
+                        Current overview
+                    </span>
+
+                </div>
+
+
+                <div class="chart-container">
+
+                    {% set total = total_inquiries %}
+
+                    {% if total > 0 %}
+
+                        {% set new_count = status_counts.get('New', 0) %}
+                        {% set contacted_count = status_counts.get('Contacted', 0) %}
+                        {% set progress_count = status_counts.get('In Progress', 0) %}
+                        {% set completed_count = status_counts.get('Completed', 0) %}
+
+                        {% set new_angle = (new_count / total * 360) %}
+                        {% set contacted_angle = ((new_count + contacted_count) / total * 360) %}
+                        {% set progress_angle = ((new_count + contacted_count + progress_count) / total * 360) %}
+                        {% set completed_angle = ((new_count + contacted_count + progress_count + completed_count) / total * 360) %}
+
+                        <div class="chart-layout">
+
+                            <div class="donut-wrap">
+
+                                <div
+                                    class="donut"
+                                    style="
+                                        --new-angle: {{ new_angle }}deg;
+                                        --contacted-angle: {{ contacted_angle }}deg;
+                                        --progress-angle: {{ progress_angle }}deg;
+                                        --completed-angle: {{ completed_angle }}deg;
+                                    "
+                                ></div>
+
+                                <div class="donut-center">
+
+                                    <strong>
+                                        {{ total }}
+                                    </strong>
+
+                                    <span>
+                                        Total
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="legend">
+
+                                <div class="legend-item">
+                                    <span class="legend-dot dot-new"></span>
+                                    <span class="legend-label">New</span>
+                                    <span class="legend-value">
+                                        {{ new_count }}
+                                    </span>
+                                </div>
+
+                                <div class="legend-item">
+                                    <span class="legend-dot dot-contacted"></span>
+                                    <span class="legend-label">Contacted</span>
+                                    <span class="legend-value">
+                                        {{ contacted_count }}
+                                    </span>
+                                </div>
+
+                                <div class="legend-item">
+                                    <span class="legend-dot dot-progress"></span>
+                                    <span class="legend-label">In Progress</span>
+                                    <span class="legend-value">
+                                        {{ progress_count }}
+                                    </span>
+                                </div>
+
+                                <div class="legend-item">
+                                    <span class="legend-dot dot-completed"></span>
+                                    <span class="legend-label">Completed</span>
+                                    <span class="legend-value">
+                                        {{ completed_count }}
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="no-activity">
+                            No inquiry data available yet.
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIVITY -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h3>
+                        Recent Activity
+                    </h3>
+
+                    <span>
+                        Last 7 days
+                    </span>
+
+                </div>
+
+
+                <div class="activity-chart">
+
+                    {% if activity_data %}
+
+                        {% set max_activity = activity_data | map(attribute='count') | max %}
+
+                        {% if max_activity == 0 %}
+                            {% set max_activity = 1 %}
+                        {% endif %}
+
+
+                        {% for day in activity_data %}
+
+                            {% set bar_width = (day.count / max_activity * 100) %}
+
+                            <div class="activity-row">
+
+                                <div class="activity-label">
+                                    {{ day.label }}
+                                </div>
+
+                                <div class="bar-bg">
+
+                                    <div
+                                        class="bar"
+                                        style="--bar-width: {{ bar_width }}%;"
+                                    ></div>
+
+                                </div>
+
+                                <div class="activity-count">
+                                    {{ day.count }}
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <div class="no-activity">
+                            No recent activity.
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             CLIENT INQUIRIES
+        ========================= -->
+
+        <div class="table-panel">
+
+            <div class="table-header">
+
+                <h2>
+                    Client Inquiries
+                </h2>
+
+                <a
+                    href="{{ url_for('export_inquiries') }}"
+                    class="export-btn"
+                >
+                    📥 Export CSV
+                </a>
+
+            </div>
+
+
+            <!-- FILTERS -->
+
+            <div class="filters">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="filter-input"
+                    placeholder="Search client, email, company..."
+                >
+
+
+                <select
+                    id="serviceFilter"
+                    class="filter-select"
+                >
+
+                    <option value="">
+                        All Services
+                    </option>
+
+                    <option value="SEO & Organic Growth">
+                        SEO & Organic Growth
+                    </option>
+
+                    <option value="Technical SEO">
+                        Technical SEO
+                    </option>
+
+                    <option value="On-Page SEO">
+                        On-Page SEO
+                    </option>
+
+                    <option value="Off-Page SEO">
+                        Off-Page SEO
+                    </option>
+
+                    <option value="Guest Posting">
+                        Guest Posting
+                    </option>
+
+                    <option value="Digital Marketing">
+                        Digital Marketing
+                    </option>
+
+                    <option value="Web Development">
+                        Web Development
+                    </option>
+
+                    <option value="Social Media Marketing">
+                        Social Media Marketing
+                    </option>
+
+                    <option value="Google Ads">
+                        Google Ads
+                    </option>
+
+                </select>
+
+
+                <select
+                    id="statusFilter"
+                    class="filter-select"
+                >
+
+                    <option value="">
+                        All Status
+                    </option>
+
+                    <option value="New">
+                        New
+                    </option>
+
+                    <option value="Contacted">
+                        Contacted
+                    </option>
+
+                    <option value="In Progress">
+                        In Progress
+                    </option>
+
+                    <option value="Completed">
+                        Completed
+                    </option>
+
+                </select>
+
+
+                <button
+                    type="button"
+                    class="clear-btn"
+                    id="clearFilters"
+                >
+                    Clear Filters
+                </button>
+
+            </div>
+
+
+            <div class="results-info">
+
+                Showing
+                <strong id="resultsCount">
+                    {{ inquiries|length }}
+                </strong>
+                inquiries
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            {% if inquiries %}
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Client
+                                </th>
+
+                                <th>
+                                    Company
+                                </th>
+
+                                <th>
+                                    Service
+                                </th>
+
+                                <th>
+                                    Budget
+                                </th>
+
+                                <th>
+                                    Timeline
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="inquiryTableBody">
+
+                            {% for inquiry in inquiries %}
+
+                                <tr
+                                    class="inquiry-row"
+                                    data-name="{{ inquiry['name']|lower }}"
+                                    data-email="{{ inquiry['email']|lower }}"
+                                    data-company="{{ (inquiry['company'] or '')|lower }}"
+                                    data-service="{{ inquiry['service'] }}"
+                                    data-status="{{ inquiry['status'] }}"
+                                >
+
+                                    <td>
+
+                                        <div class="client-name">
+                                            {{ inquiry['name'] }}
+                                        </div>
+
+                                        <div class="client-email">
+                                            {{ inquiry['email'] }}
+                                        </div>
+
+                                    </td>
+
+
+                                    <td>
+                                        {{ inquiry['company'] or '—' }}
+                                    </td>
+
+
+                                    <td>
+
+                                        <span class="service-name">
+                                            {{ inquiry['service'] }}
+                                        </span>
+
+                                    </td>
+
+
+                                    <td>
+                                        {{ inquiry['budget'] or '—' }}
+                                    </td>
+
+
+                                    <td>
+                                        {{ inquiry['timeline'] or '—' }}
+                                    </td>
+
+
+                                    <td>
+
+                                        {% if inquiry['status'] == 'New' %}
+
+                                            <span class="status status-new">
+                                                New
+                                            </span>
+
+                                        {% elif inquiry['status'] == 'Contacted' %}
+
+                                            <span class="status status-contacted">
+                                                Contacted
+                                            </span>
+
+                                        {% elif inquiry['status'] == 'In Progress' %}
+
+                                            <span class="status status-progress">
+                                                In Progress
+                                            </span>
+
+                                        {% elif inquiry['status'] == 'Completed' %}
+
+                                            <span class="status status-completed">
+                                                Completed
+                                            </span>
+
+                                        {% else %}
+
+                                            <span class="status status-new">
+                                                {{ inquiry['status'] }}
+                                            </span>
+
+                                        {% endif %}
+
+                                    </td>
+
+
+                                    <td>
+                                        {{ inquiry['created_at'] }}
+                                    </td>
+
+
+                                    <td>
+
+                                        <div class="action-buttons">
+
+                                            <a
+                                                href="{{ url_for('view_inquiry', inquiry_id=inquiry['id']) }}"
+                                                class="view-btn"
+                                            >
+                                                View
+                                            </a>
+
+
+                                            <form
+                                                method="POST"
+                                                action="{{ url_for('delete_inquiry', inquiry_id=inquiry['id']) }}"
+                                                onsubmit="return confirm('Are you sure you want to delete this inquiry?');"
+                                            >
+
+                                                <button
+                                                    type="submit"
+                                                    class="delete-btn"
+                                                >
+                                                    Delete
+                                                </button>
+
+                                            </form>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div
+                    id="noFilterResults"
+                    class="empty-state"
+                    style="display: none;"
+                >
+
+                    <div class="empty-state-icon">
+                        🔎
+                    </div>
+
+                    <h3>
+                        No matching inquiries
+                    </h3>
+
+                    <p>
+                        Try changing your search or filters.
+                    </p>
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <div class="empty-state-icon">
+                        📭
+                    </div>
+
+                    <h3>
+                        No inquiries yet
+                    </h3>
+
+                    <p>
+                        Client inquiries will appear here when someone submits the contact form.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- =========================
+     FILTER JAVASCRIPT
+========================= -->
+
+<script>
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const serviceFilter =
+        document.getElementById("serviceFilter");
+
+    const statusFilter =
+        document.getElementById("statusFilter");
+
+    const clearFilters =
+        document.getElementById("clearFilters");
+
+    const rows =
+        document.querySelectorAll(".inquiry-row");
+
+    const resultsCount =
+        document.getElementById("resultsCount");
+
+    const noFilterResults =
+        document.getElementById("noFilterResults");
+
+
+    function filterInquiries() {
+
+        const search =
+            searchInput
+                ? searchInput.value
+                    .toLowerCase()
+                    .trim()
+                : "";
+
+        const service =
+            serviceFilter
+                ? serviceFilter.value
+                : "";
+
+        const status =
+            statusFilter
+                ? statusFilter.value
+                : "";
+
+        let visibleCount = 0;
+
+
+        rows.forEach(function(row) {
+
+            const name =
+                row.dataset.name || "";
+
+            const email =
+                row.dataset.email || "";
+
+            const company =
+                row.dataset.company || "";
+
+            const rowService =
+                row.dataset.service || "";
+
+            const rowStatus =
+                row.dataset.status || "";
+
+
+            const searchMatch =
+                !search ||
+                name.includes(search) ||
+                email.includes(search) ||
+                company.includes(search);
+
+
+            const serviceMatch =
+                !service ||
+                rowService === service;
+
+
+            const statusMatch =
+                !status ||
+                rowStatus === status;
+
+
+            const show =
+                searchMatch &&
+                serviceMatch &&
+                statusMatch;
+
+
+            if (show) {
+
+                row.style.display = "";
+                visibleCount++;
+
+            } else {
+
+                row.style.display = "none";
+
+            }
+
+        });
+
+
+        if (resultsCount) {
+            resultsCount.textContent =
+                visibleCount;
+        }
+
+
+        if (noFilterResults) {
+
+            if (visibleCount === 0 && rows.length > 0) {
+
+                noFilterResults.style.display =
+                    "block";
+
+            } else {
+
+                noFilterResults.style.display =
+                    "none";
+
+            }
+
+        }
+
+    }
+
+
+    if (searchInput) {
+
+        searchInput.addEventListener(
+            "input",
+            filterInquiries
+        );
+
+    }
+
+
+    if (serviceFilter) {
+
+        serviceFilter.addEventListener(
+            "change",
+            filterInquiries
+        );
+
+    }
+
+
+    if (statusFilter) {
+
+        statusFilter.addEventListener(
+            "change",
+            filterInquiries
+        );
+
+    }
+
+
+    if (clearFilters) {
+
+        clearFilters.addEventListener(
+            "click",
+            function() {
+
+                if (searchInput) {
+                    searchInput.value = "";
+                }
+
+                if (serviceFilter) {
+                    serviceFilter.value = "";
+                }
+
+                if (statusFilter) {
+                    statusFilter.value = "";
+                }
+
+                filterInquiries();
+
+            }
+        );
+
+    }
+
+</script>
+
+</body>
+</html>
+```

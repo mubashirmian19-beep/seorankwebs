@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inquiry Details | SEORankWebs</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #070a10;
+            color: #ffffff;
+        }
+
+        .layout {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 250px;
+            background: #0d121c;
+            border-right: 1px solid #202938;
+            padding: 25px 18px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            padding: 0 12px;
+        }
+
+        .brand span {
+            color: #9ca3af;
+        }
+
+        .nav-title {
+            color: #667085;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 12px;
+            margin-bottom: 12px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 12px;
+            margin-bottom: 5px;
+            border-radius: 10px;
+            color: #aeb7c7;
+            text-decoration: none;
+        }
+
+        .nav-link.active,
+        .nav-link:hover {
+            background: #171e2b;
+            color: #ffffff;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 25px;
+            left: 18px;
+            right: 18px;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 35px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .topbar h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .topbar p {
+            margin: 8px 0 0;
+            color: #7f8a9d;
+        }
+
+        .admin-badge {
+            padding: 10px 15px;
+            border: 1px solid #293244;
+            border-radius: 10px;
+            color: #cbd5e1;
+            background: #101621;
+        }
+
+        /* BACK BUTTON */
+
+        .back-button {
+            display: inline-block;
+            text-decoration: none;
+            color: #cbd5e1;
+            background: #111824;
+            border: 1px solid #273142;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .back-button:hover {
+            background: #1a2332;
+            color: #ffffff;
+        }
+
+        /* PROFILE */
+
+        .profile-card {
+            background: #0e141f;
+            border: 1px solid #202938;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 22px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .avatar {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #182131;
+            border: 1px solid #303b4d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .profile-info h2 {
+            margin: 0 0 6px;
+            font-size: 24px;
+        }
+
+        .profile-info p {
+            margin: 0;
+            color: #8994a7;
+        }
+
+        /* DETAILS */
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-bottom: 22px;
+        }
+
+        .detail-card {
+            background: #0e141f;
+            border: 1px solid #202938;
+            border-radius: 18px;
+            padding: 23px;
+        }
+
+        .detail-label {
+            color: #737f92;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            margin-bottom: 9px;
+        }
+
+        .detail-value {
+            color: #e8edf5;
+            font-size: 16px;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .service-badge {
+            display: inline-block;
+            padding: 7px 11px;
+            border-radius: 8px;
+            background: #182131;
+            color: #d5dce7;
+            font-size: 13px;
+        }
+
+        /* STATUS */
+
+        .status-card {
+            background: #0e141f;
+            border: 1px solid #202938;
+            border-radius: 18px;
+            padding: 23px;
+            margin-bottom: 22px;
+        }
+
+        .status-card h3 {
+            margin: 0 0 8px;
+            font-size: 19px;
+        }
+
+        .status-card p {
+            margin: 0 0 18px;
+            color: #7f8a9d;
+            font-size: 14px;
+        }
+
+        .status-form {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .status-select {
+            flex: 1;
+            max-width: 350px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid #303b4d;
+            background: #090e16;
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .status-select:focus {
+            border-color: #59677e;
+        }
+
+        .update-status-btn {
+            border: 0;
+            cursor: pointer;
+            padding: 12px 18px;
+            border-radius: 10px;
+            background: #e5e7eb;
+            color: #111827;
+            font-weight: 700;
+        }
+
+        .update-status-btn:hover {
+            background: #ffffff;
+        }
+
+        .current-status {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 7px 12px;
+            border-radius: 8px;
+            background: #182131;
+            color: #d5dce7;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* REQUIREMENTS */
+
+        .details-panel {
+            background: #0e141f;
+            border: 1px solid #202938;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 22px;
+        }
+
+        .details-panel h3 {
+            margin: 0 0 18px;
+            font-size: 19px;
+        }
+
+        .message-box {
+            background: #090e16;
+            border: 1px solid #202938;
+            border-radius: 12px;
+            padding: 20px;
+            color: #cbd5e1;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            word-break: break-word;
+            min-height: 100px;
+        }
+
+        /* ACTIONS */
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            border: 0;
+            cursor: pointer;
+            padding: 11px 17px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .email-btn {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        .whatsapp-btn {
+            background: #1b3027;
+            color: #a7f3d0;
+            border: 1px solid #28523f;
+        }
+
+        .delete-btn {
+            background: #35191d;
+            color: #ff9b9b;
+            border: 1px solid #552329;
+        }
+
+        .muted {
+            color: #667085;
+            font-weight: 400;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 200px;
+            }
+
+            .main {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+                padding: 22px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .layout {
+                display: block;
+            }
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-right: 0;
+                border-bottom: 1px solid #202938;
+            }
+
+            .logout {
+                position: relative;
+                left: auto;
+                right: auto;
+                bottom: auto;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 18px;
+            }
+
+            .topbar {
+                display: block;
+            }
+
+            .admin-badge {
+                display: inline-block;
+                margin-top: 15px;
+            }
+
+            .status-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .status-select {
+                max-width: none;
+            }
+
+            .update-status-btn {
+                width: 100%;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        /* =========================================================
+   PREMIUM INQUIRY DETAIL UI
+   ========================================================= */
+
+body {
+    background:
+        radial-gradient(circle at 85% 0%, rgba(20,184,166,.055), transparent 30%),
+        #070a10;
+}
+
+/* Sidebar */
+.sidebar {
+    background:
+        linear-gradient(180deg, rgba(15,23,42,.98), rgba(7,13,25,.98));
+    box-shadow: 12px 0 35px rgba(0,0,0,.16);
+}
+
+.brand {
+    transition: transform .3s ease;
+}
+
+.brand:hover {
+    transform: translateX(3px);
+}
+
+.brand span {
+    text-shadow: 0 0 18px rgba(20,184,166,.2);
+}
+
+.nav-link {
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        color .25s ease;
+}
+
+.nav-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #14b8a6;
+    transform: scaleY(0);
+    transition: transform .25s ease;
+}
+
+.nav-link:hover {
+    transform: translateX(4px);
+}
+
+.nav-link:hover::before {
+    transform: scaleY(1);
+}
+
+/* Main entrance */
+.main {
+    animation: inquiryFadeUp .65s ease both;
+}
+
+.topbar {
+    animation: inquiryFadeUp .65s .05s ease both;
+}
+
+.back-button {
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.back-button:hover {
+    transform: translateX(-3px);
+    border-color: #14b8a6;
+    background: #111c30;
+    box-shadow: 0 8px 22px rgba(20,184,166,.08);
+}
+
+/* Admin badge */
+.admin-badge {
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background .25s ease;
+}
+
+.admin-badge:hover {
+    transform: translateY(-2px);
+    border-color: #334155;
+    background: #111c30;
+}
+
+/* Profile */
+.profile-card {
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.profile-card::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    right: -90px;
+    top: -90px;
+    border-radius: 50%;
+    background: rgba(20,184,166,.06);
+    transition: transform .5s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-4px);
+    border-color: #334155;
+    box-shadow: 0 20px 50px rgba(0,0,0,.2);
+}
+
+.profile-card:hover::after {
+    transform: scale(1.35);
+}
+
+.avatar {
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.profile-card:hover .avatar {
+    transform: scale(1.06);
+    border-color: #14b8a6;
+    box-shadow: 0 0 22px rgba(20,184,166,.12);
+}
+
+.profile-info h2 {
+    transition: color .25s ease;
+}
+
+.profile-card:hover .profile-info h2 {
+    color: #5eead4;
+}
+
+/* Detail cards */
+.detail-card {
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.detail-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #14b8a6;
+    transform: scaleY(0);
+    transition: transform .3s ease;
+}
+
+.detail-card:hover {
+    transform: translateY(-5px);
+    border-color: #334155;
+    box-shadow: 0 16px 38px rgba(0,0,0,.18);
+}
+
+.detail-card:hover::before {
+    transform: scaleY(1);
+}
+
+.detail-label {
+    transition: color .25s ease;
+}
+
+.detail-card:hover .detail-label {
+    color: #5eead4;
+}
+
+.detail-value {
+    transition: transform .25s ease;
+}
+
+.detail-card:hover .detail-value {
+    transform: translateX(3px);
+}
+
+.service-badge {
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        border-color .25s ease;
+}
+
+.detail-card:hover .service-badge {
+    transform: translateY(-2px);
+    background: #1c293c;
+    border-color: #334155;
+}
+
+/* Status */
+.status-card {
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.status-card:hover {
+    transform: translateY(-4px);
+    border-color: #334155;
+    box-shadow: 0 18px 45px rgba(0,0,0,.18);
+}
+
+.current-status {
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.current-status:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.18);
+}
+
+.status-select {
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.status-select:hover {
+    border-color: #475569;
+}
+
+.status-select:focus {
+    border-color: #14b8a6;
+    box-shadow: 0 0 0 3px rgba(20,184,166,.08);
+    background: #07101d;
+}
+
+.update-status-btn {
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+.update-status-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255,255,255,.08);
+}
+
+/* Requirements */
+.details-panel {
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.details-panel:hover {
+    transform: translateY(-4px);
+    border-color: #334155;
+    box-shadow: 0 18px 45px rgba(0,0,0,.18);
+}
+
+.message-box {
+    transition:
+        border-color .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+.message-box:hover {
+    border-color: #334155;
+    background: #0b121e;
+    box-shadow: inset 0 0 25px rgba(20,184,166,.025);
+}
+
+/* Action buttons */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,.08);
+    transform: translateX(-105%);
+    transition: transform .35s ease;
+}
+
+.btn:hover::after {
+    transform: translateX(105%);
+}
+
+.email-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(255,255,255,.08);
+}
+
+.whatsapp-btn:hover {
+    transform: translateY(-3px);
+    background: #214334;
+    box-shadow: 0 10px 24px rgba(34,197,94,.1);
+}
+
+.delete-btn:hover {
+    transform: translateY(-3px);
+    background: #451c22;
+    box-shadow: 0 10px 24px rgba(248,113,113,.1);
+}
+
+/* Animations */
+@keyframes inquiryFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+
+    .profile-card:hover,
+    .detail-card:hover,
+    .status-card:hover,
+    .details-panel:hover {
+        transform: translateY(-2px);
+    }
+
+    .profile-card:hover {
+        box-shadow: none;
+    }
+
+    .detail-card:hover {
+        box-shadow: 0 10px 25px rgba(0,0,0,.15);
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .profile-card:hover,
+    .detail-card:hover,
+    .status-card:hover,
+    .details-panel:hover,
+    .btn:hover,
+    .back-button:hover {
+        transform: none;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            SEO<span>RankWebs</span>
+        </div>
+
+        <div class="nav-title">
+            Management
+        </div>
+
+        <a href="{{ url_for('admin_dashboard') }}" class="nav-link">
+            📊 Dashboard
+        </a>
+
+        <a href="{{ url_for('home') }}" class="nav-link">
+            🌐 View Website
+        </a>
+
+        <a href="{{ url_for('contact') }}" class="nav-link">
+            ✉ Contact Page
+        </a>
+
+        <div class="logout">
+            <a href="{{ url_for('admin_logout') }}" class="nav-link">
+                🚪 Logout
+            </a>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div>
+                <h1>Inquiry Details</h1>
+                <p>View and manage this client inquiry.</p>
+            </div>
+
+            <div class="admin-badge">
+                Admin: {{ session.get("admin_username", "Admin") }}
+            </div>
+
+        </div>
+
+
+        <a href="{{ url_for('admin_dashboard') }}" class="back-button">
+            ← Back to Dashboard
+        </a>
+
+
+        <!-- CLIENT PROFILE -->
+
+        <section class="profile-card">
+
+            <div class="profile-header">
+
+                <div class="avatar">
+                    {{ inquiry["name"][0]|upper if inquiry["name"] else "C" }}
+                </div>
+
+                <div class="profile-info">
+
+                    <h2>
+                        {{ inquiry["name"] or "Unknown Client" }}
+                    </h2>
+
+                    {% if inquiry["company"] %}
+                        <p>{{ inquiry["company"] }}</p>
+                    {% else %}
+                        <p>Client Inquiry</p>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CLIENT INFORMATION -->
+
+        <section class="details-grid">
+
+            <div class="detail-card">
+
+                <div class="detail-label">
+                    Client Name
+                </div>
+
+                <div class="detail-value">
+                    {{ inquiry["name"] or "—" }}
+                </div>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <div class="detail-label">
+                    Email Address
+                </div>
+
+                <div class="detail-value">
+                    {{ inquiry["email"] or "—" }}
+                </div>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <div class="detail-label">
+                    Phone / WhatsApp
+                </div>
+
+                <div class="detail-value">
+                    {{ inquiry["phone"] or "—" }}
+                </div>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <div class="detail-label">
+                    Company
+                </div>
+
+                <div class="detail-value">
+                    {{ inquiry["company"] or "—" }}
+                </div>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <div class="detail-label">
+                    Requested Service
+                </div>
+
+                <div class="detail-value">
+
+                    {% if inquiry["service"] %}
+                        <span class="service-badge">
+                            {{ inquiry["service"] }}
+                        </span>
+                    {% else %}
+                        <span class="muted">—</span>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <div class="detail-label">
+                    Budget
+                </div>
+
+                <div class="detail-value">
+                    {{ inquiry["budget"] or "—" }}
+                </div>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <div class="detail-label">
+                    Project Timeline
+                </div>
+
+                <div class="detail-value">
+                    {{ inquiry["timeline"] or "—" }}
+                </div>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <div class="detail-label">
+                    Submitted At
+                </div>
+
+                <div class="detail-value">
+                    {{ inquiry["created_at"] or "—" }}
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATUS MANAGEMENT -->
+
+        <section class="status-card">
+
+            <h3>Inquiry Status</h3>
+
+            <p>
+                Current status:
+            </p>
+
+            <div class="current-status">
+                {{ inquiry["status"] or "New" }}
+            </div>
+
+            <form
+                method="POST"
+                action="{{ url_for('update_inquiry_status', inquiry_id=inquiry['id']) }}"
+                class="status-form"
+            >
+
+                <select
+                    name="status"
+                    class="status-select"
+                    required
+                >
+
+                    <option value="New"
+                        {% if inquiry["status"] == "New" or not inquiry["status"] %}
+                            selected
+                        {% endif %}
+                    >
+                        🆕 New
+                    </option>
+
+                    <option value="Contacted"
+                        {% if inquiry["status"] == "Contacted" %}
+                            selected
+                        {% endif %}
+                    >
+                        📞 Contacted
+                    </option>
+
+                    <option value="In Progress"
+                        {% if inquiry["status"] == "In Progress" %}
+                            selected
+                        {% endif %}
+                    >
+                        🔄 In Progress
+                    </option>
+
+                    <option value="Completed"
+                        {% if inquiry["status"] == "Completed" %}
+                            selected
+                        {% endif %}
+                    >
+                        ✅ Completed
+                    </option>
+
+                </select>
+
+                <button
+                    type="submit"
+                    class="update-status-btn"
+                >
+                    Update Status
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- CLIENT REQUIREMENTS -->
+
+        <section class="details-panel">
+
+            <h3>
+                Client Requirements
+            </h3>
+
+            <div class="message-box">
+
+                {% if inquiry["details"] %}
+                    {{ inquiry["details"] }}
+                {% else %}
+                    <span class="muted">
+                        No additional requirements were provided.
+                    </span>
+                {% endif %}
+
+            </div>
+
+
+            <!-- ACTION BUTTONS -->
+
+            <div class="actions">
+
+                {% if inquiry["email"] %}
+
+                    <a
+                        href="mailto:{{ inquiry['email'] }}"
+                        class="btn email-btn"
+                    >
+                        ✉ Email Client
+                    </a>
+
+                {% endif %}
+
+
+                {% if inquiry["phone"] %}
+
+                    <a
+                        href="https://wa.me/{{ inquiry['phone']|replace('+', '')|replace(' ', '')|replace('-', '') }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn whatsapp-btn"
+                    >
+                        💬 WhatsApp
+                    </a>
+
+                {% endif %}
+
+
+                <form
+                    method="POST"
+                    action="{{ url_for('delete_inquiry', inquiry_id=inquiry['id']) }}"
+                    onsubmit="return confirm('Are you sure you want to permanently delete this inquiry?');"
+                    style="margin: 0;"
+                >
+
+                    <button
+                        type="submit"
+                        class="btn delete-btn"
+                    >
+                        🗑 Delete Inquiry
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>
